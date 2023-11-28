@@ -2,6 +2,7 @@ const testBtn = document.querySelector(".test");
 const container = document.querySelector(".content-container");
 const dialog = document.querySelector(".form-modal");
 const bookForm = document.getElementById("add-book-form");
+const cancelBtn = document.querySelector(".cancel-btn");
 const saveBtn = document.querySelector(".save-btn");
 const myLibrary = [];
 
@@ -26,7 +27,9 @@ function addBookToLybrary() {
     inputReaded.value
   );
 
-  console.log(inputTitle.value, inputAuthor.value, inputPages.value, inputReaded.value);;
+    inputTitle.value = "";
+    inputAuthor.value = "";
+    inputPages.value = "";
 }
 
 bookForm.addEventListener("submit", (e) => {
@@ -58,6 +61,10 @@ const updateLibrary = () => {
 testBtn.addEventListener("click", () => {
   dialog.showModal();
 });
+
+cancelBtn.addEventListener("click", () => {
+  dialog.close();
+})
 
 let book0 = new Book("Eu", "Meu Livro", 2, true);
 let book1 = new Book("Tu", "teu Livro", 100, true);
