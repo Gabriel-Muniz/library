@@ -12,16 +12,29 @@
     <div class="body">
       <div class="header">
         <h1 class="site-name">to-book</h1>
-        <button class="test">Teste</button>
       </div>
       <div class="content-container">
-        <div class="book-card">
+        <div class="book-card add">
           <div class="book-spine"></div>
           <div class="book-cover">
-            <h3 class="book-author">Rick Riordan</h3>
-            <h2 class="book-title">Percy Jackson e o Ladrão de Raios</h2>
-
-            <h4 class="book-pages">400 pages</h4>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="200"
+              height="100"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-book-plus"
+            >
+              <path
+                d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+              />
+              <path d="M9 10h6" />
+              <path d="M12 7v6" />
+            </svg>
           </div>
           <div class="book-back"></div>
         </div>
@@ -30,13 +43,16 @@
       <dialog class="form-modal">
         <form method="dialog" id="add-book-form">
           <label for="title">
-            <span>Title:</span> <input type="text" id="title" name="title" autofocus required/>
+            <span>Title:</span>
+            <input type="text" id="title" name="title" autofocus required />
           </label>
           <label for="author">
-            <span>Author:</span> <input type="text" id="author" name="author" required/>
+            <span>Author:</span>
+            <input type="text" id="author" name="author" required />
           </label>
           <label for="pages">
-            <span>Pages:</span> <input type="number" id="pages" name="pages" required/>
+            <span>Pages:</span>
+            <input type="number" id="pages" name="pages" required />
           </label>
           <div>
             <span>Have you readed the book?</span>
@@ -54,7 +70,6 @@
             <button class="save-btn" type="submit">Save</button>
           </div>
         </form>
-          
       </dialog>
 
       <template id="card-template">

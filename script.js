@@ -1,4 +1,4 @@
-const testBtn = document.querySelector(".test");
+const addBtn = document.querySelector(".add");
 const container = document.querySelector(".content-container");
 const dialog = document.querySelector(".form-modal");
 const bookForm = document.getElementById("add-book-form");
@@ -32,19 +32,40 @@ function addBookToLybrary() {
   inputPages.value = "";
 }
 function updateLibraryDisplay() {
-  /*
-    here we gonna to add the array books to the books container, to do so we need
-    a way to associate the index to the book attribute so for each we run this function we skip already added books
-  */
+
+  myLibrary.forEach((book, index) => {
+    const alreadyShowing = document.querySelector(`[data-index="${index}"]`);
+    if (alreadyShowing) {
+      return;
+    }
+    let temp = document.getElementById("card-template");
+    let clone = temp.content.cloneNode(true);
+  
+    const bookCard = clone.querySelector(".book-card");
+    const title = clone.querySelector(".book-title");
+    const author = clone.querySelector(".book-author");
+    const pages = clone.querySelector(".book-pages");
+
+    title.textContent = book.title;
+    author.textContent = book.author;
+    pages.textContent = book.pages;
+
+    bookCard.setAttribute("data-index", index);
+    container.appendChild(clone);
+  })
 }
 
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
   addBookToLybrary();
+
+  updateLibraryDisplay();
+  
+  dialog.close();
 });
 
-testBtn.addEventListener("click", () => {
+addBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 
@@ -56,3 +77,4 @@ let book0 = new Book("Eu", "Meu Livro", 2, true);
 let book1 = new Book("Tu", "teu Livro", 100, true);
 let book2 = new Book("Biblia", "Jesus himself", 1000, false);
 let book3 = new Book("Em", "Pé na rede", 459, true);
+updateLibraryDisplay();
