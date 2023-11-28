@@ -25,31 +25,49 @@
           </div>
           <div class="book-back"></div>
         </div>
-
-        <div class="book-card">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <h3 class="book-author">Author Template</h3>
-              <h2 class="book-title">Title Template</h2>
-  
-              <h4 class="book-pages">Pages Template</h4>
-            </div>
-            <div class="book-back"></div>
-          </div>
       </div>
 
+      <dialog class="form-modal">
+        <form method="dialog" id="add-book-form">
+          <label for="title">
+            <span>Title:</span> <input type="text" id="title" name="title" autofocus required/>
+          </label>
+          <label for="author">
+            <span>Author:</span> <input type="text" id="author" name="author" required/>
+          </label>
+          <label for="pages">
+            <span>Pages:</span> <input type="number" id="pages" name="pages" required/>
+          </label>
+          <div>
+            <span>Have you readed the book?</span>
+            <div>
+              <input type="radio" id="yes" name="radio" value="true" checked />
+              <label for="yes">Yes, i did it!</label>
+            </div>
+            <div>
+              <input type="radio" id="no" name="radio" value="false" />
+              <label for="no">No, i didn't</label>
+            </div>
+          </div>
+          <div class="btn-container">
+            <button class="cancel-btn">Cancel</button>
+            <button class="save-btn" type="submit">Save</button>
+          </div>
+        </form>
+          
+      </dialog>
+
       <template id="card-template">
-        
-            <div class="book-card">
-                <div class="book-spine"></div>
-                <div class="book-cover">
-                  <h3 class="book-author">Author Template</h3>
-                  <h2 class="book-title">Title Template</h2>
-      
-                  <h4 class="book-pages">Pages Template</h4>
-                </div>
-                <div class="book-back"></div>
-              </div>
+        <div class="book-card">
+          <div class="book-spine"></div>
+          <div class="book-cover">
+            <h3 class="book-author">Author Template</h3>
+            <h2 class="book-title">Title Template</h2>
+
+            <h4 class="book-pages">Pages Template</h4>
+          </div>
+          <div class="book-back"></div>
+        </div>
       </template>
     </div>
   </body>
