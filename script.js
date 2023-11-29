@@ -35,14 +35,13 @@ function addBookToLybrary() {
 function updateLibraryDisplay() {
   myLibrary.forEach((book, index) => {
     const alreadyShowing = document.querySelector(`[data-index="${index}"]`);
-    if(book.status){
-      console.log(`${book.title}, deletado`);
+    if (book.status) {
       return;
     }
     if (alreadyShowing) {
       return;
     }
-    
+
     let temp = document.getElementById("card-template");
     let clone = temp.content.cloneNode(true);
 
@@ -58,32 +57,25 @@ function updateLibraryDisplay() {
     bookCard.setAttribute("data-index", index);
     container.appendChild(clone);
   });
-  addEventListenerDelete();
 }
 
-function addEventListenerDelete() {
-  document.addEventListener("DOMContentLoaded", () => {
-    const deleteBtn = document.querySelectorAll(".delete-btn");
-
-    deleteBtn.forEach((button) => {
-      button.addEventListener("click", function(e) {
-        deleteBook(this);
-      });
-    });
-  });
-}
+container.addEventListener("click", function (e) {
+  if (e.target.classList.contains("delete-btn")) {
+    deleteBook(e.target);
+  }
+});
 
 function deleteBook(button) {
   let bookCard = button.closest(".book-card");
   let bookIndex = bookCard.getAttribute("data-index");
   myLibrary[bookIndex].status = true;
 
-  container.removeChild(bookCard)
+  container.removeChild(bookCard);
+  updateLibraryDisplay();
 }
 
 bookForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   addBookToLybrary();
 
   updateLibraryDisplay();
