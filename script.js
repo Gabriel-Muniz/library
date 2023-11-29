@@ -53,6 +53,23 @@ function updateLibraryDisplay() {
     bookCard.setAttribute("data-index", index);
     container.appendChild(clone);
   })
+  addEventListenerDelete()
+}
+
+function addEventListenerDelete() {
+  document.addEventListener("DOMContentLoaded", () => {
+    const deleteBtn = document.querySelectorAll(".delete-btn");
+   
+    deleteBtn.forEach(button => {
+      button.addEventListener("click", () => {
+        const bookCard = button.closest(".book-card");
+    
+        if (bookCard) {
+          bookCard.remove();
+        }
+      })
+    });
+  })
 }
 
 bookForm.addEventListener("submit", (e) => {

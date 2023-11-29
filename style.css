@@ -225,6 +225,11 @@ body {
 
   transition: border-bottom 0.5s;
 }
+.book-cover button{
+  position: absolute;
+  align-self: flex-end;
+  margin-bottom: -99%;
+}
 .book-back {
   width: calc(var(--bookCardWidth) - 1.6rem);
   height: 2rem;
