@@ -1,9 +1,10 @@
 # library
 ## to-do
-Actually remove book from array when clicking the delete button.
 
-How to do that without messing with the array?
+To make the "readed" option im thinking of makeing a div that emulates a book marker.
 
-Giving an attribute the makes the child appender jump the element?
+So will be in a fixed position that show some icon that tell the user if the book has been readed already.
 
-Splicing the array is a bad idea? Problably cause new books would take available positions.
+Maybe using the book markar color + the icon to indicate the "readed" and "not readed". So clicking the marker would change the status of the book.
+
+A little text on the top page telling the user how to use the site wouldn't be a bad idea.
