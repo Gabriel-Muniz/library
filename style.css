@@ -282,3 +282,14 @@ form {
   font-size: 10rem;
   cursor: pointer;
 }
+.book-marker{
+  position: absolute;
+  margin-left: 20%;
+  height: 25%;
+  width: 15%;
+
+  background-color: rgb(190, 12, 131);
+  color: white;
+
+  font-size: 3rem;
+}

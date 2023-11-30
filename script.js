@@ -35,6 +35,15 @@ function addBookToLybrary() {
 function updateLibraryDisplay() {
   myLibrary.forEach((book, index) => {
     const alreadyShowing = document.querySelector(`[data-index="${index}"]`);
+
+    let temp = document.getElementById("card-template");
+    let clone = temp.content.cloneNode(true);
+    const marker = clone.querySelector(".book-marker");
+    console.log(marker);
+
+    (book.readed) ? marker.style.backgroundColor = "green" : marker.style.backgroundColor = "red";
+
+
     if (book.status) {
       return;
     }
@@ -42,8 +51,7 @@ function updateLibraryDisplay() {
       return;
     }
 
-    let temp = document.getElementById("card-template");
-    let clone = temp.content.cloneNode(true);
+    
 
     const bookCard = clone.querySelector(".book-card");
     const title = clone.querySelector(".book-title");
@@ -63,7 +71,14 @@ container.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete-btn")) {
     deleteBook(e.target);
   }
+  if (e.target.classList.contains("book-marker")) {
+    changeRead(e.target);
+  }
 });
+
+function changeRead(marker) {
+  console.log(marker);
+}
 
 function deleteBook(button) {
   let bookCard = button.closest(".book-card");
