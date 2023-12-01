@@ -19,7 +19,7 @@ function addBookToLybrary() {
   let inputTitle = document.querySelector("#title");
   let inputAuthor = document.querySelector("#author");
   let inputPages = document.querySelector("#pages");
-  let inputReaded = document.querySelector('input[name="radio"]:checked');
+  let inputReaded = document.querySelector('input[name="radio"]');
 
   new Book(
     inputTitle.value,
@@ -31,6 +31,7 @@ function addBookToLybrary() {
   inputTitle.value = "";
   inputAuthor.value = "";
   inputPages.value = "";
+  inputReaded.checked = true;
 }
 function updateLibraryDisplay() {
   myLibrary.forEach((book, index) => {
@@ -39,10 +40,13 @@ function updateLibraryDisplay() {
     let temp = document.getElementById("card-template");
     let clone = temp.content.cloneNode(true);
     const marker = clone.querySelector(".book-marker");
-    console.log(marker);
 
-    (book.readed) ? marker.style.backgroundColor = "green" : marker.style.backgroundColor = "red";
-
+    if (typeof book.readed === "string") {
+      (book.readed === "true") ? book.readed = true : book.readed = false;
+    }
+    book.readed
+      ? (marker.style.backgroundColor = "green")
+      : (marker.style.backgroundColor = "red");
 
     if (book.status) {
       return;
@@ -50,8 +54,6 @@ function updateLibraryDisplay() {
     if (alreadyShowing) {
       return;
     }
-
-    
 
     const bookCard = clone.querySelector(".book-card");
     const title = clone.querySelector(".book-title");

@@ -288,6 +288,9 @@ form {
   height: 25%;
   width: 15%;
 
+  cursor: pointer;
+  z-index: 1;
+
   background-color: rgb(190, 12, 131);
   color: white;
 
