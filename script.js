@@ -22,12 +22,12 @@ function addBookToLybrary() {
   let inputReaded = document.querySelector('input[name="radio"]:checked');
 
   new Book(
-    inputTitle.value,
     inputAuthor.value,
+    inputTitle.value,
     inputPages.value,
     inputReaded.value
   );
-    inputReaded = document.querySelector("input[name='radio']");
+  inputReaded = document.querySelector("input[name='radio']");
 
   inputTitle.value = "";
   inputAuthor.value = "";
@@ -43,11 +43,9 @@ function updateLibraryDisplay() {
     const marker = clone.querySelector(".book-marker>path");
 
     if (typeof book.readed === "string") {
-      book.readed = (book.readed == "true") ? true : false;
+      book.readed = book.readed == "true" ? true : false;
     }
-    book.readed
-      ? (marker.style.fill = "green")
-      : (marker.style.fill = "red");
+    book.readed ? (marker.style.fill = "green") : (marker.style.fill = "red");
 
     if (book.status) {
       return;
@@ -74,13 +72,22 @@ container.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete-btn")) {
     deleteBook(e.target);
   }
-  if (e.target.classList.contains("book-marker")) {
+  if (e.target.matches(".book-marker, .book-marker *")) {
     changeRead(e.target);
   }
 });
 
 function changeRead(marker) {
-  console.log(marker);
+  let bookCard = marker.closest(".book-card");
+  let bookIndex = bookCard.getAttribute("data-index");
+  if (myLibrary[bookIndex].readed) {
+    myLibrary[bookIndex].readed = false;
+  } else {
+    myLibrary[bookIndex].readed = true;
+  }
+
+  myLibrary[bookIndex].readed ? (marker.style.fill = "green") : (marker.style.fill = "red");
+  updateLibraryDisplay();
 }
 
 function deleteBook(button) {
