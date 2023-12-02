@@ -176,6 +176,7 @@ body {
 }
 .book-card {
   display: grid;
+  position: relative;
   grid-template-columns: 15% auto;
   grid-template-rows: 1fr min-content;
 
@@ -225,7 +226,7 @@ body {
 
   transition: border-bottom 0.5s;
 }
-.book-cover button{
+.book-cover button {
   position: absolute;
   align-self: flex-end;
   margin-bottom: -99%;
@@ -249,10 +250,10 @@ body {
   height: 1px;
   border-bottom: inset #667a32 0.3rem;
 }
-.book-card > .book-cover > *{
+.book-card > .book-cover > * {
   transition: transform 0.5s;
 }
-.book-card:hover > .book-cover > *{
+.book-card:hover > .book-cover > * {
   transform: translate(0, -0.6rem);
 }
 .book-card:hover .book-cover,
@@ -275,24 +276,23 @@ form {
   grid-template-rows: repeat(5, min-content);
   gap: 2rem;
 }
-.add{
+.add {
   order: 1;
 }
-.add .book-cover{
+.add .book-cover {
   font-size: 10rem;
   cursor: pointer;
 }
-.book-marker{
+.book-marker {
   position: absolute;
   margin-left: 20%;
-  height: 25%;
-  width: 15%;
+  height: 100px;
+  width: 50px;
 
+  -webkit-filter: drop-shadow(-2px 1px  1px black);
+  filter: drop-shadow(drop-shadow(-2px 1px  1px black));
+
+  top: -4px;
   cursor: pointer;
   z-index: 1;
-
-  background-color: rgb(190, 12, 131);
-  color: white;
-
-  font-size: 3rem;
 }

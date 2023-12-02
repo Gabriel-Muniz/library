@@ -40,14 +40,14 @@ function updateLibraryDisplay() {
 
     let temp = document.getElementById("card-template");
     let clone = temp.content.cloneNode(true);
-    const marker = clone.querySelector(".book-marker");
+    const marker = clone.querySelector(".book-marker>path");
 
     if (typeof book.readed === "string") {
       book.readed = (book.readed == "true") ? true : false;
     }
     book.readed
-      ? (marker.style.backgroundColor = "green")
-      : (marker.style.backgroundColor = "red");
+      ? (marker.style.fill = "green")
+      : (marker.style.fill = "red");
 
     if (book.status) {
       return;

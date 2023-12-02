@@ -72,9 +72,17 @@
         </form>
       </dialog>
 
+      <dialog class="delete-confirm">
+        <p>Do you want to delete this book?</p>
+        <button class="confirm">Yes!</button>
+        <button class="cancel">No!</button>
+      </dialog>
+
       <template id="card-template">
         <div class="book-card" data-deleted="false">
-          <div class="book-marker">><</div>
+          <svg class="book-marker" xmlns="http://www.w3.org/2000/svg" width="60" height="115" viewBox="0 0 60 115" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M60 0H0V114.355L30.3553 84L60 113.645V0Z" fill="black"/>
+            </svg>
           <div class="book-spine"></div>
           <div class="book-cover">
             <h3 class="book-author">Author Template</h3>
