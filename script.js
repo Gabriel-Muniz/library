@@ -19,7 +19,7 @@ function addBookToLybrary() {
   let inputTitle = document.querySelector("#title");
   let inputAuthor = document.querySelector("#author");
   let inputPages = document.querySelector("#pages");
-  let inputReaded = document.querySelector('input[name="radio"]');
+  let inputReaded = document.querySelector('input[name="radio"]:checked');
 
   new Book(
     inputTitle.value,
@@ -27,6 +27,7 @@ function addBookToLybrary() {
     inputPages.value,
     inputReaded.value
   );
+    inputReaded = document.querySelector("input[name='radio']");
 
   inputTitle.value = "";
   inputAuthor.value = "";
@@ -42,7 +43,7 @@ function updateLibraryDisplay() {
     const marker = clone.querySelector(".book-marker");
 
     if (typeof book.readed === "string") {
-      (book.readed === "true") ? book.readed = true : book.readed = false;
+      book.readed = (book.readed == "true") ? true : false;
     }
     book.readed
       ? (marker.style.backgroundColor = "green")
