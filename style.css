@@ -226,11 +226,20 @@ body {
 
   transition: border-bottom 0.5s;
 }
-.book-cover button {
+.delete-btn {
   position: absolute;
-  align-self: flex-end;
-  margin-bottom: -99%;
+  transform: translate(125px, 155px);
+  background-color: transparent;
+  
+  border: 2px black solid;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: 0;
+
+  transition: all 1s;
+  z-index: 2;
 }
+
 .book-back {
   width: calc(var(--bookCardWidth) - 1.6rem);
   height: 2rem;
@@ -289,10 +298,18 @@ form {
   height: 100px;
   width: 50px;
 
-  -webkit-filter: drop-shadow(-2px 1px  1px black);
-  filter: drop-shadow(drop-shadow(-2px 1px  1px black));
+  -webkit-filter: drop-shadow(-2px 1px 1px black);
+  filter: drop-shadow(-1px 1px 2px black);
 
   top: -4px;
   cursor: pointer;
   z-index: 1;
+  transition: all 0.5s;
+}
+.book-card:hover  > .book-marker {
+  -webkit-filter: drop-shadow(0px 2px 2px black);
+  filter: drop-shadow(-1px 0px 1px black);
+}
+.book-card:hover > * > .delete-btn {
+  transform: translate(125px, 170px);
 }

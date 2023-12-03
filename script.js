@@ -69,12 +69,13 @@ function updateLibraryDisplay() {
 }
 
 container.addEventListener("click", function (e) {
-  if (e.target.classList.contains("delete-btn")) {
+  if (e.target.classList.contains("delete-book")) {
     deleteBook(e.target);
   }
   if (e.target.matches(".book-marker, .book-marker *")) {
     changeRead(e.target);
   }
+  console.log(e.target);
 });
 
 function changeRead(marker) {
