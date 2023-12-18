@@ -6,7 +6,21 @@ const cancelBtn = document.querySelector(".cancel-btn");
 const saveBtn = document.querySelector(".save-btn");
 const myLibrary = [];
 
-function Book(author, title, pages, readed) {
+class Book {
+  constructor(author, title, pages, readed) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.readed = readed;
+    this.status = false;
+  }
+
+  pushBook = (() => {
+    myLibrary.push(this);
+  })();
+}
+
+/* function Book(author, title, pages, readed) {
   this.author = author;
   this.title = title;
   this.pages = pages;
@@ -14,7 +28,7 @@ function Book(author, title, pages, readed) {
   this.status = false;
 
   myLibrary.push(this);
-}
+} */
 function addBookToLybrary() {
   let inputTitle = document.querySelector("#title");
   let inputAuthor = document.querySelector("#author");
@@ -87,7 +101,9 @@ function changeRead(marker) {
     myLibrary[bookIndex].readed = true;
   }
 
-  myLibrary[bookIndex].readed ? (marker.style.fill = "green") : (marker.style.fill = "red");
+  myLibrary[bookIndex].readed
+    ? (marker.style.fill = "green")
+    : (marker.style.fill = "red");
   updateLibraryDisplay();
 }
 
