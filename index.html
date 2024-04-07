@@ -9,20 +9,50 @@
   </head>
   <body>
     <div class="books-container">
-      <button class="new-book">Add new book</button>
+      
+      <table class="book-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Pages</th>
+            <th>Status</th>
+            <!-- <th>Delete</th> -->
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
     </div>
+
     <div class="form-container">
       <form>
-        <p><label for=""></label><input type="text" class="inTitle" /></p>
+        <p>Title: <input type="text" class="inTitle" required/></p>
         <p>Author: <input type="text" class="inAuthor" /></p>
-        <p>Pages: <input type="number" class="inPages" /></p>
+        <p>Pages: <input type="number" class="inPages" required/></p>
         <p>
           <fieldset>
             <legend>Readed?</legend>
-
+            <label for="yes">Yes!</label>
+            <input type="radio" name="bookStatus" id="yes" value="true">
+            <label for="no">No!</label>
+            <input type="radio" name="bookStatus" id="no" value="false">
           </fieldset>
         </p>
+        <button type="submit" class="btn-add-book">Add book</button>
       </form>
     </div>
+
+    <template class="book-template">
+      <tr class="book-row">
+        <td class="book-title"></td>
+        <td class="book-author"></td>
+        <td class="book-pages"></td>
+        <td class="book-status"></td>
+        <td><button class="delete-btn">Delete</button></td>
+      </tr>
+    </template>
   </body>
 </html>

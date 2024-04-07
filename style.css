@@ -1,4 +1,11 @@
-.book-row{
+.book-table{
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+tr{
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+}
+td{
+  text-align: center;
 }
