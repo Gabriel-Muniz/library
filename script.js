@@ -26,22 +26,22 @@ const book5 = new Book("The Catcher in the Rye", "J.D. Salinger", 277, false);
 myLibrary.push(book1, book2, book3, book4, book5);
 
 // DOM STUFF //
-const tableBody = document.querySelector('tbody');
+const tableBody = document.querySelector("tbody");
 
 const frm = document.querySelector("form");
 const btnAddBook = document.querySelector(".btn-add-book");
 
-tableBody.addEventListener('click', (e) => {
-  const targetRow = e.target.closest('.book-row');
+tableBody.addEventListener("click", (e) => {
+  const targetRow = e.target.closest(".book-row");
   const bookIndex = Number(targetRow.dataset.id);
 
-  if (e.target.classList.contains('delete-btn')) {
-    deleteBook(bookIndex)
+  if (e.target.classList.contains("delete-btn")) {
+    deleteBook(bookIndex);
   }
-  if(e.target.classList.contains('book-status')){
-    changeBookStatus(e.target.closest('.book-status'), bookIndex)
+  if (e.target.classList.contains("book-status")) {
+    changeBookStatus(e.target.closest(".book-status"), bookIndex);
   }
-})
+});
 
 btnAddBook.addEventListener("click", (e) => {
   e.preventDefault();
@@ -51,40 +51,46 @@ btnAddBook.addEventListener("click", (e) => {
   const inPages = document.querySelector(".inPages");
   const inReaded = document.querySelector("fieldset > input").checked;
 
-  const newBook = new Book(inTitle.value, inAuthor.value, inPages.value, inReaded)
+  const newBook = new Book(
+    inTitle.value,
+    inAuthor.value,
+    inPages.value,
+    inReaded
+  );
 
   inTitle.value = inAuthor.value = inPages.value = "";
   inReaded.checked = true;
 
   addBookToLibrary(newBook);
-  UpdateTable()
+  UpdateTable();
 });
 
-function UpdateTable(){
-  myLibrary.forEach(book => {
-  
-  const verifyBook = document.querySelector(`[data-id="${myLibrary.indexOf(book)}"]`);
-  
-  if (verifyBook || removedBooks.includes(book)) {
-    //Checking if there is a row with the index already and skipping if it does
-    return;
-  }
+function UpdateTable() {
+  myLibrary.forEach((book) => {
+    const verifyBook = document.querySelector(
+      `[data-id="${myLibrary.indexOf(book)}"]`
+    );
 
-  const tbody = document.querySelector("tbody");
-  const template = document.querySelector(".book-template");
+    if (verifyBook || removedBooks.includes(book)) {
+      //Checking if there is a row with the index already and skipping if it does
+      return;
+    }
 
-  const clone = template.content.cloneNode(true);
-  const row = clone.querySelector(".book-row");
-  row.setAttribute("data-id", myLibrary.indexOf(book));
+    const tbody = document.querySelector("tbody");
+    const template = document.querySelector(".book-template");
 
-  let bookInfo = clone.querySelectorAll("td");
-  bookInfo[0].textContent = book.title;
-  bookInfo[1].textContent = book.author;
-  bookInfo[2].textContent = book.pages;
-  bookInfo[3].firstChild.textContent = book.status ? "Readed" : "Not readed";
+    const clone = template.content.cloneNode(true);
+    const row = clone.querySelector(".book-row");
+    row.setAttribute("data-id", myLibrary.indexOf(book));
 
-  tbody.appendChild(clone)
-  })
+    let bookInfo = clone.querySelectorAll("td");
+    bookInfo[0].textContent = book.title;
+    bookInfo[1].textContent = book.author;
+    bookInfo[2].textContent = book.pages;
+    bookInfo[3].firstChild.textContent = book.status ? "Readed" : "Not readed";
+
+    tbody.appendChild(clone);
+  });
 }
 
 function deleteBook(index) {
@@ -93,9 +99,14 @@ function deleteBook(index) {
   removedBooks.push(myLibrary[index]);
 }
 
-function changeBookStatus(bookStatus, book){
+function changeBookStatus(bookStatus, book) {
   myLibrary[book].status = !myLibrary[book].status;
-  bookStatus.textContent = book ? "Readed" : "Not readed";
+
+  
+  const auxStatus = myLibrary[book].status ? "Readed" : "Not readed";
+
+  bookStatus.textContent = auxStatus;
+  console.log(auxStatus);
 }
 
 UpdateTable();
