@@ -1,6 +1,5 @@
 const myLibrary = [];
 const removedBooks = [];
-
 function Book(title, author, pages, status = false) {
   this.title = title;
   this.author = author;
@@ -26,8 +25,6 @@ const book5 = new Book("The Catcher in the Rye", "J.D. Salinger", 277, false);
 
 myLibrary.push(book1, book2, book3, book4, book5);
 
-myLibrary.map((book, index) => UpdateTable(book, index));
-
 // DOM STUFF //
 const tableBody = document.querySelector('tbody');
 
@@ -35,9 +32,15 @@ const frm = document.querySelector("form");
 const btnAddBook = document.querySelector(".btn-add-book");
 
 tableBody.addEventListener('click', (e) => {
-  const target = e.target.closest('.book-row');
-  removedBooks.push(target.dataset.id)
-  console.log(deleteBook(Number(target.dataset.id)))
+  const targetRow = e.target.closest('.book-row');
+  const bookIndex = Number(targetRow.dataset.id);
+
+  if (e.target.classList.contains('delete-btn')) {
+    deleteBook(bookIndex)
+  }
+  if(e.target.classList.contains('book-status')){
+    changeBookStatus(e.target.closest('.book-status'), bookIndex)
+  }
 })
 
 btnAddBook.addEventListener("click", (e) => {
@@ -54,10 +57,19 @@ btnAddBook.addEventListener("click", (e) => {
   inReaded.checked = true;
 
   addBookToLibrary(newBook);
-  UpdateTable(newBook)
+  UpdateTable()
 });
 
-function UpdateTable(book) {
+function UpdateTable(){
+  myLibrary.forEach(book => {
+  
+  const verifyBook = document.querySelector(`[data-id="${myLibrary.indexOf(book)}"]`);
+  
+  if (verifyBook || removedBooks.includes(book)) {
+    //Checking if there is a row with the index already and skipping if it does
+    return;
+  }
+
   const tbody = document.querySelector("tbody");
   const template = document.querySelector(".book-template");
 
@@ -69,11 +81,21 @@ function UpdateTable(book) {
   bookInfo[0].textContent = book.title;
   bookInfo[1].textContent = book.author;
   bookInfo[2].textContent = book.pages;
-  bookInfo[3].textContent = book.status ? "Readed" : "Not readed";
+  bookInfo[3].firstChild.textContent = book.status ? "Readed" : "Not readed";
 
-  tbody.appendChild(clone);
+  tbody.appendChild(clone)
+  })
 }
 
 function deleteBook(index) {
-  return myLibrary.slice(index, index + 1);
+  const bookToRemove = document.querySelector(`[data-id="${index}"]`);
+  tableBody.removeChild(bookToRemove);
+  removedBooks.push(myLibrary[index]);
 }
+
+function changeBookStatus(bookStatus, book){
+  myLibrary[book].status = !myLibrary[book].status;
+  bookStatus.textContent = book ? "Readed" : "Not readed";
+}
+
+UpdateTable();
