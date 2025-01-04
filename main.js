@@ -30,25 +30,49 @@ myLibrary.push(book1, book2, book3, book4, book5);
 
 const content = document.querySelector(".content");
 
-myLibrary.forEach((book) => {
+function populateLibrary() {
+  myLibrary.forEach((book) => {
+    const bookCard = document.createElement("div");
+    bookCard.classList.add("book-card");
 
-  const bookCard = document.createElement("div");
-  bookCard.classList.add("book-card");
+    const bookTitle = document.createElement("h2");
+    bookTitle.classList.add("book-title");
+    bookTitle.textContent = book.name;
 
+    const bookAuthor = document.createElement("span");
+    bookAuthor.classList.add("book-author");
+    bookAuthor.textContent = book.author;
 
-  const bookTitle = document.createElement("h2");
-  bookTitle.classList.add("book-title");
-  bookTitle.textContent = book.name;
+    const bookPages = document.createElement("span");
+    bookPages.textContent = book.pages;
+    bookPages.classList.add("book-pages");
 
-  const bookAuthor = document.createElement("span");
-  bookAuthor.classList.add("book-author");
-  bookAuthor.textContent = book.author;
+    bookCard.append(bookTitle, bookAuthor, bookPages);
 
-  const bookPages = document.createElement("span");
-  bookPages.textContent = book.pages;
-  bookPages.classList.add('book-pages')
+    content.appendChild(bookCard);
+  });
+}
 
-  bookCard.append(bookTitle, bookAuthor, bookPages);
+/*       Get book form        */
 
-  content.appendChild(bookCard);
+const addBook = document.querySelector("form>button");
+
+addBook.addEventListener("click", () => {
+  const inTitle = document.querySelector("#inTitle").value;
+
+  const inAuthor = document.querySelector("#inAuthor").value;
+
+  const inPages = document.querySelector("#inPages").value;
+
+  const inReaded = document.querySelector(
+    'input[name="inReaded"]:checked'
+  ).value;
+
+  const newBook = new Book(inTitle, inAuthor, inPages, inReaded);
+
+  myLibrary.push(newBook);
+
+  console.log(myLibrary);
+
+  event.preventDefault();
 });
