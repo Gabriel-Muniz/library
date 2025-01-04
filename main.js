@@ -1,9 +1,10 @@
 console.log("It's working?");
 
 const myLibrary = [];
+const deletedBooks = [];
 
 function Book(title, author, pages, readed = false) {
-  this.name = title;
+  this.title = title;
   this.author = author;
   this.pages = pages;
   this.readed = readed;
@@ -31,13 +32,19 @@ myLibrary.push(book1, book2, book3, book4, book5);
 const content = document.querySelector(".content");
 
 function populateLibrary() {
-  myLibrary.forEach((book) => {
+  myLibrary.forEach((book, index) => {
+    let aux = false;
+
+    aux = deletedBooks.find((bookTrash) => bookTrash === book);
+
+    if (aux) return;
+
     const bookCard = document.createElement("div");
     bookCard.classList.add("book-card");
-
+    bookCard.dataset.id = index;
     const bookTitle = document.createElement("h2");
     bookTitle.classList.add("book-title");
-    bookTitle.textContent = book.name;
+    bookTitle.textContent = book.title;
 
     const bookAuthor = document.createElement("span");
     bookAuthor.classList.add("book-author");
@@ -47,7 +54,20 @@ function populateLibrary() {
     bookPages.textContent = book.pages;
     bookPages.classList.add("book-pages");
 
-    bookCard.append(bookTitle, bookAuthor, bookPages);
+    const bookButtons = document.createElement("div");
+    bookButtons.classList.add("book-buttons");
+
+    const readedBook = document.createElement("button");
+    readedBook.classList.add("btn-readed");
+    readedBook.textContent = "Readed";
+
+    const deleteBook = document.createElement("button");
+    deleteBook.classList.add("btn-delete");
+    deleteBook.textContent = "Delete";
+
+    bookButtons.append(readedBook, deleteBook);
+
+    bookCard.append(bookTitle, bookAuthor, bookPages, bookButtons);
 
     content.appendChild(bookCard);
   });
@@ -72,7 +92,36 @@ addBook.addEventListener("click", () => {
 
   myLibrary.push(newBook);
 
-  console.log(myLibrary);
+  populateLibrary();
 
   event.preventDefault();
 });
+
+/*         Cards buttons        */
+
+content.addEventListener("click", (e) => {
+  let targetDelete = e.target.closest(".btn-delete");
+
+  if (targetDelete) {
+    targetDelete = targetDelete.closest(".book-card");
+    deletedBooks.push(myLibrary[targetDelete.dataset.id]);
+  }
+
+  let targetReaded = e.target.closest(".btn-readed");
+
+  if (targetReaded){
+    targetReaded = targetReaded.closest('.book-card').dataset.id;
+
+    myLibrary[targetReaded].updateReadStatus();
+  }
+
+  clearDisplay();
+  return;
+});
+
+function clearDisplay(){
+  content.textContent = '';
+  populateLibrary();
+}
+
+populateLibrary();
