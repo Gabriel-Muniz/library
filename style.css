@@ -81,6 +81,18 @@ body,
 }
 .sidebar {
   background-color: #fed;
+  padding: 0 24px;
+}
+input {
+  width: clamp(180px, 1fr, 300px);
+}
+.input-cont {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.fieldset {
+  justify-self: center;
 }
 .content {
   flex-grow: 4;
@@ -89,6 +101,10 @@ body,
   grid-template-columns: repeat(auto-fit, 200px);
   grid-auto-rows: 300px;
   gap: 15px;
+}
+.content,
+.sidebar {
+  padding-top: 24px;
 }
 .book-card {
   position: relative;

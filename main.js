@@ -92,7 +92,7 @@ addBook.addEventListener("click", () => {
 
   myLibrary.push(newBook);
 
-  populateLibrary();
+  clearDisplay();
 
   event.preventDefault();
 });
