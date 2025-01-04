@@ -1,3 +1,116 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 * {
-  background-color: whitesmoke;
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* My code */
+body,
+.body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) 5fr;
+  grid-template-rows: 220px 1fr;
+  background-color: #666;
+}
+.header {
+  grid-column: 1 / span 2;
+  flex-grow: 1;
+  background-color: darkcyan;
+}
+.sidebar {
+  background-color: #fed;
+}
+.content {
+  flex-grow: 4;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-auto-rows: 300px;
+  gap: 15px;
+}
+.book-card {
+  background-color: #fff;
+  max-height: 300px;
+  padding: 12px 24px;
+
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 4fr 1fr;
+}
+.book-title {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  text-align: center;
+}
+.book-author,
+.book-pages {
+  align-self: end;
+}
+.book-author {
+  justify-content: start;
+}
+.book-pages {
+  justify-self: end;
 }

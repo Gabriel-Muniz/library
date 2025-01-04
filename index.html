@@ -5,7 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="main.js"></script>
+    <script src="main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <div class="body">
+      <div class="header"></div>
+
+      <div class="sidebar">
+        <form action="" method="get">
+          <div class="input-cont">
+            <label for="inTitle">Title:</label>
+            <input type="text" name="inTitle" id="inTitle" />
+          </div>
+
+          <div class="input-cont">
+            <label for="inAuthor">Author:</label
+            ><input type="text" name="inAuthor" id="inAuthor" />
+          </div>
+
+          <div class="input-cont">
+            <label for="inPages">Pages:</label>
+            <input type="number" name="inPages" id="inPages" />
+          </div>
+
+          <div class="input-cont">
+            <fieldset>
+              <legend>Readed?</legend>
+              <label for="inReaded">Yes</label>
+              <input type="radio" name="inReaded" id="inReaded" value="true" />
+
+              <label for="inReaded">No</label>
+              <input type="radio" name="inReaded" id="inReaded" value="false" />
+            </fieldset>
+          </div>
+
+          <button type="submit">Add book</button>
+        </form>
+      </div>
+      <div class="content"></div>
+    </div>
+  </body>
 </html>
