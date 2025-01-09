@@ -150,7 +150,6 @@ input[type="radio"] {
   transition: all 0.3s ease-in-out;
 }
 .book-card:hover {
-  box-shadow: 0px 0px 25px 5px #ffffffaa;
   border: 3px #d0d0d0 solid;
 }
 .book-title {
@@ -223,4 +222,10 @@ form > button:hover {
 
 button {
   cursor: pointer;
+}
+.readed-book {
+  box-shadow: 0px 0px 25px 5px rgba(49, 184, 49, 0.3);
+}
+.unread-book {
+  box-shadow: 0px 0px 25px 5px rgba(243, 68, 68, 0.3);
 }

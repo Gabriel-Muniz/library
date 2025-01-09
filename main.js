@@ -65,6 +65,10 @@ function populateLibrary() {
     deleteBook.classList.add("btn-delete");
     deleteBook.textContent = "Delete";
 
+    console.log(book.status);
+    
+    bookCard.classList.add(((book.readed) ? 'readed-book' : 'unread-book'));
+
     bookButtons.append(readedBook, deleteBook);
 
     bookCard.append(bookTitle, bookAuthor, bookPages, bookButtons);
@@ -109,8 +113,8 @@ content.addEventListener("click", (e) => {
 
   let targetReaded = e.target.closest(".btn-readed");
 
-  if (targetReaded){
-    targetReaded = targetReaded.closest('.book-card').dataset.id;
+  if (targetReaded) {
+    targetReaded = targetReaded.closest(".book-card").dataset.id;
 
     myLibrary[targetReaded].updateReadStatus();
   }
@@ -119,8 +123,8 @@ content.addEventListener("click", (e) => {
   return;
 });
 
-function clearDisplay(){
-  content.textContent = '';
+function clearDisplay() {
+  content.textContent = "";
   populateLibrary();
 }
 
