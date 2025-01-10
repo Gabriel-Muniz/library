@@ -64,8 +64,6 @@ function populateLibrary() {
     const deleteBook = document.createElement("button");
     deleteBook.classList.add("btn-delete");
     deleteBook.textContent = "Delete";
-
-    console.log(book.status);
     
     bookCard.classList.add(((book.readed) ? 'readed-book' : 'unread-book'));
 
