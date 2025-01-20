@@ -1,18 +1,18 @@
-console.log("It's working?");
-
 const myLibrary = [];
 const deletedBooks = [];
 
-function Book(title, author, pages, readed = false) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readed = readed;
-}
+class Book {
+  constructor(title, author, pages, readed = false) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readed = readed;
+  }
 
-Book.prototype.updateReadStatus = function () {
-  this.readed = !this.readed;
-};
+  updateReadStatus() {
+    this.readed = !this.readed;
+  }
+}
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
@@ -64,8 +64,8 @@ function populateLibrary() {
     const deleteBook = document.createElement("button");
     deleteBook.classList.add("btn-delete");
     deleteBook.textContent = "Delete";
-    
-    bookCard.classList.add(((book.readed) ? 'readed-book' : 'unread-book'));
+
+    bookCard.classList.add(book.readed ? "readed-book" : "unread-book");
 
     bookButtons.append(readedBook, deleteBook);
 
