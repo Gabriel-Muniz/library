@@ -61,3 +61,5 @@ function updateSidebarList() {
 
     console.log(bookList)
 }
+
+updateSidebarList()
