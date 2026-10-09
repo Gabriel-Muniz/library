@@ -8,7 +8,7 @@ function Book(id, title, author, pages, isRead = false) {
     this.isRead = isRead;
 }
 
-Book.prototype.changeStatus = function(){
+Book.prototype.changeStatus = function () {
     this.isRead = !this.isRead;
 }
 
@@ -30,3 +30,34 @@ const testBook3 = new Book(crypto.randomUUID(), 'O ladrão de raios', 'Rick Rior
 const testBook4 = new Book(crypto.randomUUID(), 'Aniquilação', ' Jeff Vandermeer', '196');
 
 myLibrary.push(testBook1, testBook2, testBook3, testBook4)
+
+function updateSidebarList() {
+
+    const bookList = document.querySelector('ul.book-list');
+
+    myLibrary.map((bookObject => {
+
+
+        const bookListItem = document.createElement('li');
+        bookListItem.classList.add('book-item');
+
+        const bookListTitle = document.createElement('span');
+        bookListTitle.classList.add('book-title');
+        bookListTitle.textContent = bookObject.title;
+
+        const bookListAuthor = document.createElement('span');
+        bookListAuthor.classList.add('book-author');
+        bookListAuthor.textContent = bookObject.author + '.';
+
+        bookListItem.append(bookListTitle)
+
+        bookListItem.textContent += ' by '
+
+        bookListItem.append(bookListAuthor)
+
+        bookList.appendChild(bookListItem);
+
+    }))
+
+    console.log(bookList)
+}
