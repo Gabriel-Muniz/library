@@ -58,8 +58,34 @@ function updateSidebarList() {
         bookList.appendChild(bookListItem);
 
     }))
-
-    console.log(bookList)
 }
 
-updateSidebarList()
+function updateBooksContainer() {
+    const booksContainer = document.querySelector('.books-container');
+
+    myLibrary.map((bookObject => {
+        const bookBody = document.createElement('div');
+        bookBody.classList.add('book-body');
+
+        const bookAuthor = document.createElement('div');
+        bookAuthor.classList.add('book-author');
+
+        const bookTitle = document.createElement('div');
+        bookTitle.classList.add('book-title');
+
+        const bookPages = document.createElement('div');
+        bookPages.classList.add('book-pages');
+
+        bookAuthor.textContent = bookObject.author;
+        bookTitle.textContent = bookObject.title;
+        bookPages.textContent = bookObject.pages;
+
+        bookBody.append(bookAuthor, bookTitle, bookPages)
+
+        booksContainer.appendChild(bookBody);
+
+        
+    }))
+}
+updateSidebarList();
+updateBooksContainer()
