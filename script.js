@@ -26,7 +26,7 @@ function addBookToLibrary() {
 
 const testBook1 = new Book(crypto.randomUUID(), 'Cujo', 'Stephen King', '373', true);
 const testBook2 = new Book(crypto.randomUUID(), 'Eragon', 'Christopher Paolini', '466', true);
-const testBook3 = new Book(crypto.randomUUID(), 'O ladrão de raios', 'Rick Riordan', '385', true);
+const testBook3 = new Book(crypto.randomUUID(), 'O Ladrão de Raios', 'Rick Riordan', '385', true);
 const testBook4 = new Book(crypto.randomUUID(), 'Aniquilação', ' Jeff Vandermeer', '196');
 
 myLibrary.push(testBook1, testBook2, testBook3, testBook4)
