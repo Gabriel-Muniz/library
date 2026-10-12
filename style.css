@@ -118,7 +118,7 @@ body {
   }
 }
 
-form.initial-book-form {
+form#initial-book-form {
   box-sizing: border-box;
   display: grid;
 
