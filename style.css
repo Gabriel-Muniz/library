@@ -118,7 +118,7 @@ body {
   }
 }
 
-form.new-book-form {
+form.initial-book-form {
   box-sizing: border-box;
   display: grid;
 
@@ -144,7 +144,7 @@ form.new-book-form {
     grid-column: 1 / 3;
   }
 
-  .btn-add-book {
+  .btn-add-book-form {
     grid-column: 1 / 3;
   }
 }
@@ -192,5 +192,40 @@ form.new-book-form {
     grid-column: 1;
     grid-row: 3;
     font-size: 0.9em;
+  }
+}
+
+#new-book-dialog {
+  font-size: 2.5rem;
+}
+
+#new-book-form {
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 1em;
+
+  label {
+    text-align: right;
+  }
+
+  .form-row {
+    display: grid;
+
+    grid-column: 1/3;
+    grid-template-columns: subgrid;
+  }
+
+  fieldset {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1/3;
+
+    justify-items: center;
+  }
+
+  .btn-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
   }
 }

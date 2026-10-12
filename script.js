@@ -84,8 +84,19 @@ function updateBooksContainer() {
 
         booksContainer.appendChild(bookBody);
 
-        
+
     }))
 }
+
+const btnModal = document.querySelector('.btn-add-book-form');
+
+btnModal.addEventListener('click', (e) => {
+    const formModal = document.querySelector('#new-book-dialog');
+
+    formModal.showModal();
+})
+
+
+btnModal.click();
 updateSidebarList();
 updateBooksContainer()
