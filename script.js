@@ -1,7 +1,7 @@
 const myLibrary = [];
 
-function Book(id, title, author, pages, isRead = false) {
-    this.id = id;
+function Book(title, author, pages, isRead = false) {
+    this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -12,22 +12,21 @@ Book.prototype.changeStatus = function () {
     this.isRead = !this.isRead;
 }
 
-function addBookToLibrary() {
-    let bookId = crypto.randomUUID();
-    let bookTitle = prompt('Title: ');
-    let bookAuthor = prompt('Author: ');
-    let bookPages = prompt('Pages: ');
+function addBookToLibrary(title, author, pages, status) {
+    let bookTitle = title;
+    let bookAuthor = author;
+    let bookPages = pages;
 
-    let newBook = new Book(bookId, bookTitle, bookAuthor, bookPages)
+    let newBook = new Book(bookTitle, bookAuthor, bookPages, status)
 
     myLibrary.push(newBook);
     console.log(newBook);
 }
 
-const testBook1 = new Book(crypto.randomUUID(), 'Cujo', 'Stephen King', '373', true);
-const testBook2 = new Book(crypto.randomUUID(), 'Eragon', 'Christopher Paolini', '466', true);
-const testBook3 = new Book(crypto.randomUUID(), 'O Ladrão de Raios', 'Rick Riordan', '385', true);
-const testBook4 = new Book(crypto.randomUUID(), 'Aniquilação', ' Jeff Vandermeer', '196');
+const testBook1 = new Book('Cujo', 'Stephen King', '373', true);
+const testBook2 = new Book('Eragon', 'Christopher Paolini', '466', true);
+const testBook3 = new Book('O Ladrão de Raios', 'Rick Riordan', '385', true);
+const testBook4 = new Book('Aniquilação', ' Jeff Vandermeer', '196');
 
 myLibrary.push(testBook1, testBook2, testBook3, testBook4)
 
@@ -88,30 +87,48 @@ function updateBooksContainer() {
     }))
 }
 
+const newBookForm = document.querySelector('#new-book-form');
+
 const modalHandler = () => {
     const initialBookForm = document.querySelector('#initial-book-form');
     const inInitialBookTitle = initialBookForm.querySelector('#initial_book_title');
     const inInitialBookAuthor = initialBookForm.querySelector('#initial_book_author');
 
-    const newBookForm = document.querySelector('#new-book-form');
     const inBookTitle = newBookForm.querySelector('#book_title');
     const inBookAuthor = newBookForm.querySelector('#book_author');
     const inBookPages = newBookForm.querySelector('#book_pages');
 
-    if(inInitialBookTitle.value){
+    if (inInitialBookTitle.value) {
         inBookTitle.value = inInitialBookTitle.value;
         inBookTitle.removeAttribute('autofocus');
         inBookAuthor.setAttribute('autofocus', true);
     }
 
-    if(inInitialBookAuthor.value){
+    if (inInitialBookAuthor.value) {
         inBookAuthor.value = inInitialBookAuthor.value;
         inBookAuthor.removeAttribute('autofocus');
         inBookPages.setAttribute('autofocus', true);
     }
 }
 
+const formHandler = () => {
+    const inBookTitle = newBookForm.querySelector('#book_title').value;
+    const inBookAuthor = newBookForm.querySelector('#book_author').value
+    const inBookPages = newBookForm.querySelector('#book_pages').value
+    const inBookStatus = newBookForm.querySelector('input[checked]').value;
+
+    addBookToLibrary(inBookTitle, inBookAuthor, inBookPages);
+    updateSidebarList()    
+    updateBooksContainer()    
+}
+
 const btnModal = document.querySelector('.btn-add-book-form');
+const btnSubmitNewBook = document.querySelector('.btn-save-book-form');
+
+newBookForm.addEventListener('submit', (e) => {
+    formHandler();
+    e.preventDefault()
+})
 
 btnModal.addEventListener('click', (e) => {
     const formModal = document.querySelector('#new-book-dialog');
