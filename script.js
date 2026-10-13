@@ -70,8 +70,8 @@ function updateBooksContainer() {
 
         const bookBody = document.createElement('div');
         bookBody.classList.add('book-body');
-        bookBody.dataset.id = bookObject.id;
-        bookBody.dataset.status = bookObject.isRead;
+        bookBody.dataset.bookId = bookObject.id;
+        bookBody.dataset.bookStatus = bookObject.isRead;
 
         const bookAuthor = document.createElement('div');
         bookAuthor.classList.add('book-author');
