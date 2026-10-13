@@ -30,36 +30,6 @@ const testBook4 = new Book('Aniquilação', ' Jeff Vandermeer', '196');
 
 myLibrary.push(testBook1, testBook2, testBook3, testBook4)
 
-function updateSidebarList() {
-
-    const bookList = document.querySelector('ul.book-list');
-
-    myLibrary.map((bookObject => {
-
-
-        const bookListItem = document.createElement('li');
-        bookListItem.classList.add('book-item');
-        bookListItem.dataset.id = bookObject.id;
-
-        const bookListTitle = document.createElement('span');
-        bookListTitle.classList.add('book-title');
-        bookListTitle.textContent = bookObject.title;
-
-        const bookListAuthor = document.createElement('span');
-        bookListAuthor.classList.add('book-author');
-        bookListAuthor.textContent = bookObject.author + '.';
-
-        bookListItem.append(bookListTitle)
-
-        bookListItem.textContent += ' by '
-
-        bookListItem.append(bookListAuthor)
-
-        bookList.appendChild(bookListItem);
-
-    }))
-}
-
 const booksContainer = document.querySelector('.books-container');
 
 
@@ -149,7 +119,6 @@ const formHandler = () => {
     console.log(inBookStatus);
 
     addBookToLibrary(inBookTitle, inBookAuthor, inBookPages, inBookStatus);
-    updateSidebarList()
     updateBooksContainer()
 }
 
@@ -190,5 +159,4 @@ booksContainer.addEventListener('click', (e) => {
 })
 
 // btnModal.click();
-updateSidebarList();
 updateBooksContainer()
