@@ -69,7 +69,7 @@ function updateBooksContainer(removeBook = false) {
         booksContainer.removeChild(removeBook);
         return;
     }
-    
+
     myLibrary.map((bookObject => {
         const checkIfRendered = booksContainer.querySelector(`[data-book-id='${bookObject.id}']`)
         if (checkIfRendered) return;
@@ -93,9 +93,16 @@ function updateBooksContainer(removeBook = false) {
 
         const btnDeleteBook = document.createElement('button');
         btnDeleteBook.classList.add('btn-delete-book');
-        btnDeleteBook.textContent = 'Delete'
+        btnDeleteBook.textContent = 'Delete';
 
-        bookBody.append(bookAuthor, bookTitle, bookPages, btnDeleteBook)
+        const bookMarker = document.createElement('span');
+        bookMarker.classList.add('book-status-marker');
+        if (bookObject.isRead) {
+            bookMarker.classList.add('read')
+        }
+
+
+        bookBody.append(bookAuthor, bookTitle, bookPages, bookMarker, btnDeleteBook)
 
         booksContainer.appendChild(bookBody);
     }))
@@ -137,9 +144,11 @@ const formHandler = () => {
     const inBookTitle = newBookForm.querySelector('#book_title').value;
     const inBookAuthor = newBookForm.querySelector('#book_author').value
     const inBookPages = newBookForm.querySelector('#book_pages').value
-    const inBookStatus = newBookForm.querySelector('input[checked]').value;
+    const inBookStatus = newBookForm.querySelector('input[type=radio]:checked').value;
 
-    addBookToLibrary(inBookTitle, inBookAuthor, inBookPages);
+    console.log(inBookStatus);
+
+    addBookToLibrary(inBookTitle, inBookAuthor, inBookPages, inBookStatus);
     updateSidebarList()
     updateBooksContainer()
 }
@@ -160,10 +169,24 @@ btnModal.addEventListener('click', (e) => {
 })
 
 booksContainer.addEventListener('click', (e) => {
+    const targetBook = e.target.closest('.book-body');
+    const targetBookId = (targetBook) ? targetBook.dataset.bookId : null;
+
     if (e.target.classList.contains('btn-delete-book')) {
-        const bookToDelete = e.target.closest('.book-body').dataset.bookId;
-        deleteBook(bookToDelete)
-    };
+        console.log(targetBookId);
+
+        deleteBook(targetBookId)
+        return;
+    }
+
+    if (e.target.classList.contains('book-status-marker')) {
+        let targetBookStatus = targetBook.dataset.bookStatus;
+        myLibrary.find(bookObject => bookObject.id === targetBookId)
+            .changeStatus();
+
+        targetBook.dataset.bookStatus = (targetBookStatus === 'true') ? 'false' : 'true';
+
+    }
 })
 
 // btnModal.click();

@@ -76,7 +76,7 @@ body {
   min-height: 100vh;
 }
 
-button{
+button {
   cursor: pointer;
 }
 
@@ -203,13 +203,50 @@ form#initial-book-form {
   .btn-delete-book {
     position: absolute;
     bottom: 0;
-    right: 0;
+    left: 0;
 
     background-color: aquamarine;
     padding: 0.5em 1em;
 
     border: none;
   }
+
+  .book-status-marker {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 6rem;
+    height: 6rem;
+
+    background-color: rgb(137, 137, 192);
+
+    border-radius: 5px;
+    border-bottom-left-radius: 100%;
+
+    &::after {
+      display: block;
+      transform: rotate(45deg);
+      text-align: center;
+      color: white;
+    }
+  }
+
+  &[data-book-status='true']>.book-status-marker {
+    background-color: darkgreen;
+
+    /* &::after {
+      content: 'read';
+    } */
+  }
+
+  &[data-book-status='false']>.book-status-marker {
+    background-color: red;
+
+    /* &::after {
+      content: 'not read';
+    } */
+  }
+
 }
 
 #new-book-dialog {
