@@ -88,15 +88,39 @@ function updateBooksContainer() {
     }))
 }
 
+const modalHandler = () => {
+    const initialBookForm = document.querySelector('#initial-book-form');
+    const inInitialBookTitle = initialBookForm.querySelector('#initial_book_title');
+    const inInitialBookAuthor = initialBookForm.querySelector('#initial_book_author');
+
+    const newBookForm = document.querySelector('#new-book-form');
+    const inBookTitle = newBookForm.querySelector('#book_title');
+    const inBookAuthor = newBookForm.querySelector('#book_author');
+    const inBookPages = newBookForm.querySelector('#book_pages');
+
+    if(inInitialBookTitle.value){
+        inBookTitle.value = inInitialBookTitle.value;
+        inBookTitle.removeAttribute('autofocus');
+        inBookAuthor.setAttribute('autofocus', true);
+    }
+
+    if(inInitialBookAuthor.value){
+        inBookAuthor.value = inInitialBookAuthor.value;
+        inBookAuthor.removeAttribute('autofocus');
+        inBookPages.setAttribute('autofocus', true);
+    }
+}
+
 const btnModal = document.querySelector('.btn-add-book-form');
 
 btnModal.addEventListener('click', (e) => {
     const formModal = document.querySelector('#new-book-dialog');
 
+    modalHandler();
     formModal.showModal();
 })
 
 
-btnModal.click();
+// btnModal.click();
 updateSidebarList();
 updateBooksContainer()
