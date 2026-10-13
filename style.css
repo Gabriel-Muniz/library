@@ -76,6 +76,10 @@ body {
   min-height: 100vh;
 }
 
+button{
+  cursor: pointer;
+}
+
 .body-wrapper {
   display: grid;
 
@@ -162,7 +166,9 @@ form#initial-book-form {
 
 .book-body {
   display: grid;
+  position: relative;
 
+  grid-template-columns: 1fr min-content;
   grid-template-rows: repeat(3, min-content);
   align-content: space-between;
 
@@ -176,22 +182,33 @@ form#initial-book-form {
   font-size: 2rem;
 
   .book-author {
-    grid-column: 1;
+    grid-column: 1/3;
     grid-row: 1;
     font-size: 1.2em;
   }
 
   .book-title {
-    grid-column: 1;
+    grid-column: 1/3;
     grid-row: 2;
 
     font-size: 2em;
   }
 
   .book-pages {
-    grid-column: 1;
+    grid-column: 1/3;
     grid-row: 3;
     font-size: 0.9em;
+  }
+
+  .btn-delete-book {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    background-color: aquamarine;
+    padding: 0.5em 1em;
+
+    border: none;
   }
 }
 
