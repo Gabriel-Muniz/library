@@ -39,6 +39,7 @@ function updateSidebarList() {
 
         const bookListItem = document.createElement('li');
         bookListItem.classList.add('book-item');
+        bookListItem.dataset.id = bookObject.id;
 
         const bookListTitle = document.createElement('span');
         bookListTitle.classList.add('book-title');
@@ -63,8 +64,14 @@ function updateBooksContainer() {
     const booksContainer = document.querySelector('.books-container');
 
     myLibrary.map((bookObject => {
+
+        const checkIfRendered = booksContainer.querySelector(`[data-id='${bookObject.id}']`)
+        if (checkIfRendered) return;
+
         const bookBody = document.createElement('div');
         bookBody.classList.add('book-body');
+        bookBody.dataset.id = bookObject.id;
+        bookBody.dataset.status = bookObject.isRead;
 
         const bookAuthor = document.createElement('div');
         bookAuthor.classList.add('book-author');
@@ -82,8 +89,6 @@ function updateBooksContainer() {
         bookBody.append(bookAuthor, bookTitle, bookPages)
 
         booksContainer.appendChild(bookBody);
-
-
     }))
 }
 
@@ -118,8 +123,8 @@ const formHandler = () => {
     const inBookStatus = newBookForm.querySelector('input[checked]').value;
 
     addBookToLibrary(inBookTitle, inBookAuthor, inBookPages);
-    updateSidebarList()    
-    updateBooksContainer()    
+    updateSidebarList()
+    updateBooksContainer()
 }
 
 const btnModal = document.querySelector('.btn-add-book-form');
