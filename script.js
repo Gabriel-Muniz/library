@@ -20,7 +20,7 @@ function addBookToLibrary(title, author, pages, status) {
     let newBook = new Book(bookTitle, bookAuthor, bookPages, status)
 
     myLibrary.push(newBook);
-    console.log(newBook);
+    // console.log(newBook);
 }
 
 const testBook1 = new Book('Cujo', 'Stephen King', '373', true);
@@ -60,12 +60,18 @@ function updateSidebarList() {
     }))
 }
 
-function updateBooksContainer() {
-    const booksContainer = document.querySelector('.books-container');
+const booksContainer = document.querySelector('.books-container');
 
+
+function updateBooksContainer(removeBook = false) {
+
+    if (removeBook) {
+        booksContainer.removeChild(removeBook);
+        return;
+    }
+    
     myLibrary.map((bookObject => {
-
-        const checkIfRendered = booksContainer.querySelector(`[data-id='${bookObject.id}']`)
+        const checkIfRendered = booksContainer.querySelector(`[data-book-id='${bookObject.id}']`)
         if (checkIfRendered) return;
 
         const bookBody = document.createElement('div');
@@ -75,18 +81,21 @@ function updateBooksContainer() {
 
         const bookAuthor = document.createElement('div');
         bookAuthor.classList.add('book-author');
+        bookAuthor.textContent = bookObject.author;
 
         const bookTitle = document.createElement('div');
         bookTitle.classList.add('book-title');
+        bookTitle.textContent = bookObject.title;
 
         const bookPages = document.createElement('div');
         bookPages.classList.add('book-pages');
-
-        bookAuthor.textContent = bookObject.author;
-        bookTitle.textContent = bookObject.title;
         bookPages.textContent = bookObject.pages;
 
-        bookBody.append(bookAuthor, bookTitle, bookPages)
+        const btnDeleteBook = document.createElement('button');
+        btnDeleteBook.classList.add('btn-delete-book');
+        btnDeleteBook.textContent = 'Delete'
+
+        bookBody.append(bookAuthor, bookTitle, bookPages, btnDeleteBook)
 
         booksContainer.appendChild(bookBody);
     }))
@@ -116,6 +125,14 @@ const modalHandler = () => {
     }
 }
 
+const deleteBook = (bookToDeleteId) => {
+    const bookIndex = myLibrary.findIndex((bookObject) => (bookObject.id === bookToDeleteId));
+    const bookElement = booksContainer.childNodes[bookIndex];
+    myLibrary.splice(bookIndex, 1);
+
+    updateBooksContainer(bookElement);
+}
+
 const formHandler = () => {
     const inBookTitle = newBookForm.querySelector('#book_title').value;
     const inBookAuthor = newBookForm.querySelector('#book_author').value
@@ -142,6 +159,12 @@ btnModal.addEventListener('click', (e) => {
     formModal.showModal();
 })
 
+booksContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-delete-book')) {
+        const bookToDelete = e.target.closest('.book-body').dataset.bookId;
+        deleteBook(bookToDelete)
+    };
+})
 
 // btnModal.click();
 updateSidebarList();
