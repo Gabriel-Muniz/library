@@ -9,8 +9,12 @@ class Book {
         this.isRead = isRead;
     }
 
-    changeStatus(){
+    changeStatus() {
         this.isRead = !this.isRead
+    }
+
+    get bookDescription() {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${(this.isRead) ? 'read' : 'not read'}`;
     }
 }
 
