@@ -26,7 +26,6 @@ function addBookToLibrary(title, author, pages, status) {
     let newBook = new Book(bookTitle, bookAuthor, bookPages, status)
 
     myLibrary.push(newBook);
-    // console.log(newBook);
 }
 
 const testBook1 = new Book('Cujo', 'Stephen King', '373', true);
@@ -164,5 +163,4 @@ booksContainer.addEventListener('click', (e) => {
     }
 })
 
-// btnModal.click();
 updateBooksContainer()
